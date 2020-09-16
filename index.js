@@ -503,19 +503,17 @@ line 2`;
 	
 
   /// Iterable (bonus) ///
-	/*(function UseGeneratorFunction() {
+	(function UseGeneratorFunction() {
 		// Rewrite the function below to be a generator function ("function*" and "yield").
-		function range(start, end) {
-			let list = [];
-			while (start < end) {
-				list.push(start);
+		function* range(start, end) {
+			while(start<end){	
+				yield start;
 				start++;
 			}
-			return list;
 		}	
 
 		// Don't make changes below this line	
-
+		
 		let result = [];
 		for (let i of range(2, 7)) {
 			result.push(i);
@@ -524,7 +522,7 @@ line 2`;
 		expect(result).toEqual([2, 3, 4, 5, 6]);
 
 		solvedBonus++;
-	})();*/
+	})();
 
   if (solved === toSolve) {
     console.log(`
