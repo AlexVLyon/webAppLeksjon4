@@ -1,12 +1,12 @@
 //Tenker at ID løses backend med autoincrement, men la det til her.
-    var currId=10;
+    let currId=10;
 
 //REPO:
-    var todos = [{id:1,title:"Todotitle",author:"Author Author",description:"I'm baby sriracha hot chicken mixtape pabst organic air"},
+    let todos = [{id:1,title:"Todotitle",author:"Author Author",description:"I'm baby sriracha hot chicken mixtape pabst organic air"},
                 {id:2,title:"Todotitle",author:"Author Author",description:"I'm baby sriracha hot chicken mixtape pabst organic air"},
                 {id:3,title:"Todotitle",author:"Author Author",description:"I'm baby sriracha hot chicken mixtape pabst organic air"}];
 
-    var completedTodos = [{id:4,title:"Todotitle",author:"Author Author",description:"I'm baby sriracha hot chicken mixtape pabst organic air", completedDate:"22.12.20"},
+    let completedTodos = [{id:4,title:"Todotitle",author:"Author Author",description:"I'm baby sriracha hot chicken mixtape pabst organic air", completedDate:"22.12.20"},
                         {id:5,title:"Todotitle",author:"Author Author",description:"I'm baby sriracha hot chicken mixtape pabst organic air", completedDate:"22.12.20"},
                         {id:6,title:"Todotitle",author:"Author Author",description:"I'm baby sriracha hot chicken mixtape pabst organic air", completedDate:"22.12.20"} ]
 
@@ -14,27 +14,23 @@ window.onload = startup;
 
 function startup(){
     // MODAL:
-        var modal = document.getElementById("createTodoModal");
-        var newTodoBtn = document.getElementById("newTodo");      
-        var span = document.getElementsByClassName("close")[0];
+        let modal = document.getElementById("createTodoModal");
+        let newTodoBtn = document.getElementById("newTodo");      
+        let span = document.getElementsByClassName("close")[0];
         
-        newTodoBtn.onclick = function() {
-            modal.style.display = "block";
-        }
+        newTodoBtn.onclick = () =>  modal.style.display = "block"; 
        
-        window.onclick = function(event){
+        window.onclick = (event) =>{ 
             if(event.target == modal){
                 modal.style.display = "none";
             }
         }
         
-        span.onclick = function() {
-            modal.style.display = "none";
-        }
+        span.onclick = () => modal.style.display = "none";
 
     //Create button    
-        var createBtn = document.getElementById("createButton");
-            createBtn.onclick = function(){
+        let createBtn = document.getElementById("createButton");
+            createBtn.onclick = () =>{
                     createNewTodo();
                     modal.style.display = "none";
                 }
@@ -49,29 +45,29 @@ function writeTodos(){
 //Sletter alt som var der fra før, lager alt på nytt.
     document.getElementById("todoList").innerHTML=null;
             
-    for(i=0;i<todos.length;i++){
-        var title = todos[i].title;
-        var description = todos[i].description;
-        var id = todos[i].id;
+    for(const i in todos){
+        let title = todos[i].title;
+        let description = todos[i].description;
+        let id = todos[i].id;
 
-        var listElement = document.createElement("li")
+        let listElement = document.createElement("li")
             listElement.className = "todo";
             listElement.value = id;
 
-        var h3 = document.createElement("h3");
+        let h3 = document.createElement("h3");
             h3.innerHTML = title;
 
-        var p = document.createElement("p");
+        let p = document.createElement("p");
             p.innerHTML = description;
 
-        var deleteButton = document.createElement("button");
+        let deleteButton = document.createElement("button");
             deleteButton.onclick =  function(){
                 deleteTodo(id);
             } 
             deleteButton.innerHTML = "Delete";
             deleteButton.className="deleteButton";
 
-        var completeButton = document.createElement("button");
+        let completeButton = document.createElement("button");
             completeButton.onclick = function(){
                 completeTodo(id);
             } 
@@ -92,14 +88,14 @@ function writeCompletedTodos(){
     document.getElementById("completedTodos").innerHTML=null;
 
 //Adder først headingene: Gjør programmatisk sånn at en ikke sletter disse når funksjonen kalles på ny.
-    var headingRow = document.createElement("tr");
-    var headingTitle = document.createElement("th");
+    let headingRow = document.createElement("tr");
+    let headingTitle = document.createElement("th");
         headingTitle.innerHTML = "Title";
-    var headingAuthor = document.createElement("th");
+    let headingAuthor = document.createElement("th");
         headingAuthor.innerHTML = "Author";
-    var headingDescription = document.createElement("th");
+    let headingDescription = document.createElement("th");
         headingDescription.innerHTML = "Description";
-    var headingDate = document.createElement("th");
+    let headingDate = document.createElement("th");
         headingDate.innerHTML = "Completed Date:"
 
         headingRow.appendChild(headingTitle); headingRow.appendChild(headingAuthor);
@@ -108,22 +104,22 @@ function writeCompletedTodos(){
 
         document.getElementById("completedTodos").appendChild(headingRow);
 
-    for(i=0;i<completedTodos.length;i++){
-        var title = completedTodos[i].title;
-        var description = completedTodos[i].description;
-        var author = completedTodos[i].author;
-        var date = completedTodos[i].completedDate;
+    for(const i in completedTodos){
+        let title = completedTodos[i].title;
+        let description = completedTodos[i].description;
+        let author = completedTodos[i].author;
+        let date = completedTodos[i].completedDate;
 
-        var tableRow = document.createElement("tr");
+        let tableRow = document.createElement("tr");
 
-        var titleCell = document.createElement("td");
+        let titleCell = document.createElement("td");
             titleCell.innerHTML = title;
-        var descriptionCell = document.createElement("td"); 
+        let descriptionCell = document.createElement("td"); 
             descriptionCell.innerHTML = description;
 
-        var authorCell = document.createElement("td");
+        let authorCell = document.createElement("td");
             authorCell.innerHTML = author;
-        var dateCell = document.createElement("td");
+        let dateCell = document.createElement("td");
             dateCell.innerHTML = date;
 
             tableRow.appendChild(titleCell);
@@ -139,19 +135,21 @@ function writeCompletedTodos(){
 //================= CRUD ================
 
 function createNewTodo(){
-    var title = document.getElementById("title").value;
-    var description = document.getElementById("description").value;
-    var author = document.getElementById("author").value;
+    let title = document.getElementById("title").value;
+    let description = document.getElementById("description").value;
+    let author = document.getElementById("author").value;
     
     currId++;
-    var todo = {id: currId, title: title,author: author, description: description};
+    let todo = {id: currId, title: title,author: author, description: description};
     todos.push(todo);
           
     writeTodos();
 }
 
 function deleteTodo(id){
-    for(i=0;i<todos.length;i++){
+
+    //Byttet til for...in
+    for (const i in todos){
         if(todos[i].id == id){
             todos.splice(i,1);
         }
@@ -162,15 +160,15 @@ function deleteTodo(id){
 
 function completeTodo(id){
     //Setter todoen inn i complete og fjerner fra todos
-    for(i=0;i<todos.length;i++){
+    for(const i in todos){
         if(todos[i].id == id){
-            var date = new Date();
-            var day = date.getDay();
-            var month = date.getMonth()+1;
-            var year = date.getFullYear();
-            var dato = day + "." + month + "." + year;
+            let date = new Date();
+            let day = date.getDate();
+            let month = date.getMonth()+1;
+            let year = date.getFullYear();
+            let dato = day + "." + month + "." + year;
                         
-            var completedObject = todos[i];
+            let completedObject = todos[i];
                 completedObject.completedDate = dato;
                 completedTodos.push(completedObject);
 
