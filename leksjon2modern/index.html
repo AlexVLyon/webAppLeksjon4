@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" media="screen" href="style/style.css" />
+    <title>oblig2</title>
+    <script type="text/javascript" src="script/script.js"></script>
+
+</head>
+<body>
+    <header>
+        <h1 class="headerBar">HIOF</h1>
+
+        <div id="userNameBar">
+            <p class="headerBar">User user</p>
+        </div>
+    </header>
+   
+    <main>
+        <button id="newTodo">+Todo </button>
+
+        <!-- MODAL! -->
+
+        <div id="createTodoModal" class="modal">
+            <div class="modal-content">
+
+                <div id=modalHeader>
+                    <span class="close">&times;</span>
+                    <h2>Create todo</h2>
+                </div>
+                
+                <div id="inputWrapper">
+                    <label for="title">Title:</label>
+                    <input class="inputFelt" type="text" id="title">
+                
+                    <label for="description">Description:</label>
+                    <input class="inputFelt" type="text" id="description" maxlength="125">
+                 
+                    <label for="author">Author:</label>
+                    <input class="inputFelt" type="text" id="author">
+               
+                    <button id="createButton">Create</button>
+                </div>
+            </div>
+        </div>
+
+        <ul id="todoList">
+              <li>test</li>
+        </ul>
+
+        <h2 id="completedTodosHeading">Completed todos</h2>
+            <div id="checkboxContainer">
+                <input type="checkbox" name="filterByDate" id="filterByDateCheckbox">
+                <label for="filterByDate">Filter by date</label>
+            </div>    
+
+            <table id="completedTodos">
+
+            </table>
+
+        </main>
+    
+</body>
+</html>
